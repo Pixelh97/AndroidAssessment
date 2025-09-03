@@ -1,11 +1,17 @@
 package com.example.androidassessment.ui
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.androidassessment.domian.repository.ProfileRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 
-class MainActivityViewModel : ViewModel() {
+class MainActivityViewModel(
+    private val profileRepository: ProfileRepository,
+) : ViewModel() {
     private val _profileScreenUiState = MutableStateFlow(ProfileScreenUiState())
     val profileScreenUiState: StateFlow<ProfileScreenUiState> = _profileScreenUiState.asStateFlow()
 
@@ -14,6 +20,14 @@ class MainActivityViewModel : ViewModel() {
     }
 
     private fun loadData() {
-        TODO("Not yet implemented")
+        viewModelScope.launch {
+            val profileState = profileRepository.getProfile().toProfileUiState()
+            _profileScreenUiState.update {
+                it.copy(
+                    profile = profileState,
+                    isLoading = false,
+                )
+            }
+        }
     }
 }
