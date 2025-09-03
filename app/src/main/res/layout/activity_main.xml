@@ -5,6 +5,11 @@
 
     <data>
 
+        <import type="android.view.View" />
+
+        <variable
+            name="vm"
+            type="com.example.androidassessment.ui.MainActivityViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -12,244 +17,281 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
-        tools:context=".MainActivity">
+        tools:context=".ui.MainActivity">
 
-        <ImageView
-            android:id="@+id/img_profile_background"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:contentDescription="@string/profile_header_background"
-            android:src="@drawable/bg_profile_header"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <LinearLayout
-            android:id="@+id/profile_app_bar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:padding="16dp"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageButton
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:backgroundTint="@android:color/transparent"
-                android:contentDescription="@string/navigation_back_button" />
-
-            <TextView
-                android:id="@+id/username"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="24dp"
-                android:layout_weight="1"
-                android:fontFamily="@font/circular_std_book"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="14sp"
-                tools:text="\@brunopham" />
-
-            <ImageButton
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:backgroundTint="@android:color/transparent"
-                android:contentDescription="@string/setting_button"
-                android:src="@drawable/ic_setting" />
-        </LinearLayout>
-
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/imv_profile_pic"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_marginTop="14dp"
-            android:adjustViewBounds="true"
-            android:padding="5dp"
-            android:scaleType="fitCenter"
-            app:layout_constraintBottom_toBottomOf="@+id/img_profile_background"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/img_profile_background"
-            app:shapeAppearanceOverlay="@style/CircularShape"
-            app:strokeColor="@color/white"
-            app:strokeWidth="4dp"
-            tools:src="@drawable/pic" />
-
-        <LinearLayout
-            android:id="@+id/profile_info_section"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="14dp"
-            android:layout_marginTop="16dp"
-            android:gravity="center_horizontal"
-            android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@id/imv_profile_pic">
-
-            <TextView
-                android:id="@+id/profile_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/circular_std_bold"
-                android:textAlignment="center"
-                android:textColor="@color/textColor"
-                android:textSize="20sp"
-                tools:text="Bruno Pham" />
-
-            <TextView
-                android:id="@+id/user_location"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:fontFamily="@font/circular_std_book"
-                android:textAlignment="center"
-                android:textColor="@color/black_purple"
-                android:textSize="16sp"
-                tools:text="Da Nang, Vietnam" />
-
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                app:cardBackgroundColor="@color/grey_background"
-                app:cardCornerRadius="6dp"
-                app:contentPaddingBottom="8dp"
-                app:contentPaddingTop="8dp"
-                app:strokeWidth="0dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/followers_count"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/circular_std_bold"
-                        android:textAlignment="center"
-                        android:textColor="@color/textColor"
-                        android:textSize="16sp"
-                        tools:text="220" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/circular_std_book"
-                        android:textAlignment="center"
-                        android:textColor="@color/text_placeholder"
-                        android:textSize="16sp"
-                        tools:text=" Followers" />
-
-                    <View
-                        android:layout_width="48dp"
-                        android:layout_height="0dp" />
-
-                    <TextView
-                        android:id="@+id/following_count"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/circular_std_bold"
-                        android:textAlignment="center"
-                        android:textColor="@color/textColor"
-                        android:textSize="16sp"
-                        tools:text="150" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/circular_std_book"
-                        android:textAlignment="center"
-                        android:textColor="@color/text_placeholder"
-                        android:textSize="16sp"
-                        tools:text=" Following" />
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-            <LinearLayout
-                android:id="@+id/social_media_section"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <ImageButton
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:backgroundTint="@android:color/transparent"
-                    android:src="@drawable/ic_website" />
-
-                <View
-                    android:layout_width="6dp"
-                    android:layout_height="6dp"
-                    android:layout_marginHorizontal="24dp"
-                    android:background="@drawable/rounded_dot_shape" />
-
-                <ImageButton
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:backgroundTint="@android:color/transparent"
-                    android:src="@drawable/ic_instagram" />
-
-                <View
-                    android:layout_width="6dp"
-                    android:layout_height="6dp"
-                    android:layout_marginHorizontal="24dp"
-                    android:background="@drawable/rounded_dot_shape" />
-
-                <ImageButton
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:backgroundTint="@android:color/transparent"
-                    android:src="@drawable/ic_facebook" />
-            </LinearLayout>
-        </LinearLayout>
-
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tab_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="23dp"
-            android:backgroundTint="@color/white"
-            android:paddingVertical="6dp"
-            app:layout_constraintTop_toBottomOf="@id/profile_info_section"
-            app:tabIndicator="@drawable/tab_indicator"
-            app:tabIndicatorHeight="4dp"
-            app:tabMode="fixed"
-            app:tabSelectedTextColor="@color/primary_background"
-            app:tabTextColor="@android:color/transparent" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tab_layout" />
 
         <com.google.android.material.progressindicator.CircularProgressIndicator
             android:id="@+id/loading_indicator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:indicatorColor="@color/gradient_start_color"
-            android:progressBackgroundTint="@color/gradient_start_color"
             android:indeterminateTint="@color/primary_background"
+            android:progressBackgroundTint="@color/gradient_start_color"
+            android:visibility="@{vm.profileScreenUiState.isLoading == true ? View.VISIBLE : View.GONE}"
+            app:indicatorColor="@color/gradient_start_color"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tab_layout" />
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/no_data_placeholder"
-            android:layout_width="wrap_content"
+        <ScrollView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:importantForAccessibility="no"
-            android:visibility="gone"
-            android:src="@drawable/no_data_placeholder"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tab_layout" />
+            android:orientation="vertical"
+            android:visibility="@{vm.profileScreenUiState.isLoading == false ? View.VISIBLE : View.GONE}"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/data_success_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/img_profile_background"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/profile_header_background"
+                    android:src="@drawable/bg_profile_header"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <LinearLayout
+                    android:id="@+id/profile_app_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageButton
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:backgroundTint="@android:color/transparent"
+                        android:contentDescription="@string/navigation_back_button" />
+
+                    <TextView
+                        android:id="@+id/username"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="24dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/circular_std_book"
+                        android:text="@{vm.profileScreenUiState.profile.username}"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        tools:text="\@brunopham" />
+
+                    <ImageButton
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:backgroundTint="@android:color/transparent"
+                        android:contentDescription="@string/setting_button"
+                        android:src="@drawable/ic_setting" />
+                </LinearLayout>
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/imv_profile_pic"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginTop="14dp"
+                    android:adjustViewBounds="true"
+                    android:padding="5dp"
+                    android:scaleType="fitCenter"
+                    app:url="@{vm.profileScreenUiState.profile.imageUrl}"
+                    app:layout_constraintBottom_toBottomOf="@+id/img_profile_background"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/img_profile_background"
+                    app:shapeAppearanceOverlay="@style/CircularShape"
+                    app:strokeColor="@color/white"
+                    app:strokeWidth="4dp"
+                    tools:src="@drawable/pic" />
+
+                <LinearLayout
+                    android:id="@+id/profile_info_section"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="14dp"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    app:layout_constraintTop_toBottomOf="@id/imv_profile_pic">
+
+                    <TextView
+                        android:id="@+id/profile_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/circular_std_bold"
+                        android:textAlignment="center"
+                        android:textColor="@color/textColor"
+                        android:textSize="20sp"
+                        tools:text="Bruno Pham" />
+
+                    <TextView
+                        android:id="@+id/user_location"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:fontFamily="@font/circular_std_book"
+                        android:text="@{vm.profileScreenUiState.profile.location}"
+                        android:textAlignment="center"
+                        android:textColor="@color/black_purple"
+                        android:textSize="16sp"
+                        tools:text="Da Nang, Vietnam" />
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        app:cardBackgroundColor="@color/grey_background"
+                        app:cardCornerRadius="6dp"
+                        app:contentPaddingBottom="8dp"
+                        app:contentPaddingTop="8dp"
+                        app:strokeWidth="0dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/followers_count"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/circular_std_bold"
+                                android:text="@{vm.profileScreenUiState.profile.followersCount}"
+                                android:textAlignment="center"
+                                android:textColor="@color/textColor"
+                                android:textSize="16sp"
+                                tools:text="220" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/circular_std_book"
+                                android:textAlignment="center"
+                                android:textColor="@color/text_placeholder"
+                                android:textSize="16sp"
+                                tools:text=" Followers" />
+
+                            <View
+                                android:layout_width="48dp"
+                                android:layout_height="0dp" />
+
+                            <TextView
+                                android:id="@+id/following_count"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/circular_std_bold"
+                                android:text="@{vm.profileScreenUiState.profile.followingCount}"
+                                android:textAlignment="center"
+                                android:textColor="@color/textColor"
+                                android:textSize="16sp"
+                                tools:text="150" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/circular_std_book"
+                                android:textAlignment="center"
+                                android:textColor="@color/text_placeholder"
+                                android:textSize="16sp"
+                                tools:text=" Following" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <LinearLayout
+                        android:id="@+id/social_media_section"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageButton
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:backgroundTint="@android:color/transparent"
+                            android:src="@drawable/ic_website" />
+
+                        <View
+                            android:layout_width="6dp"
+                            android:layout_height="6dp"
+                            android:layout_marginHorizontal="24dp"
+                            android:background="@drawable/rounded_dot_shape" />
+
+                        <ImageButton
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:backgroundTint="@android:color/transparent"
+                            android:src="@drawable/ic_instagram" />
+
+                        <View
+                            android:layout_width="6dp"
+                            android:layout_height="6dp"
+                            android:layout_marginHorizontal="24dp"
+                            android:background="@drawable/rounded_dot_shape" />
+
+                        <ImageButton
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:backgroundTint="@android:color/transparent"
+                            android:src="@drawable/ic_facebook" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tab_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="23dp"
+                    android:backgroundTint="@color/white"
+                    android:paddingVertical="6dp"
+                    android:paddingHorizontal="10dp"
+                    app:layout_constraintTop_toBottomOf="@id/profile_info_section"
+                    app:tabIndicator="@drawable/tab_indicator"
+                    app:tabIndicatorAnimationMode="elastic"
+                    app:tabIndicatorColor="@null"
+                    app:tabIndicatorFullWidth="true"
+                    app:tabIndicatorGravity="stretch"
+                    app:tabMode="fixed"
+                    app:tabSelectedTextColor="@color/gradient_end_color"
+                    app:tabTextColor="@color/text_placeholder">
+
+                    <com.google.android.material.tabs.TabItem
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@{vm.profileScreenUiState.profile.shots}" />
+
+                    <com.google.android.material.tabs.TabItem
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@{vm.profileScreenUiState.profile.collections}"/>
+                </com.google.android.material.tabs.TabLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tab_layout" />
+
+                <ImageView
+                    android:id="@+id/no_data_placeholder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="47dp"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/no_data_placeholder"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tab_layout" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
