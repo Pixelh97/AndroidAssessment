@@ -198,6 +198,7 @@
                         android:orientation="horizontal">
 
                         <ImageButton
+                            android:id="@+id/open_website"
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:backgroundTint="@android:color/transparent"
@@ -210,6 +211,7 @@
                             android:background="@drawable/rounded_dot_shape" />
 
                         <ImageButton
+                            android:id="@+id/open_insta"
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:backgroundTint="@android:color/transparent"
@@ -222,6 +224,7 @@
                             android:background="@drawable/rounded_dot_shape" />
 
                         <ImageButton
+                            android:id="@+id/open_face"
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:backgroundTint="@android:color/transparent"
