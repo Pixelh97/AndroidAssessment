@@ -2,15 +2,17 @@ package com.example.androidassessment.ui
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.androidassessment.R
 import com.example.androidassessment.databinding.ActivityMainBinding
-import org.koin.android.ext.android.getKoin
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
-    private lateinit var viewModel: MainActivityViewModel
+    private val viewModel: MainActivityViewModel by viewModels<MainActivityViewModel>()
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,18 +25,13 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        initViewModel()
         initViews()
     }
 
     private fun initViews() {
-        binding.apply {
-            lifecycleOwner = this@MainActivity
+        with(binding) {
+            lifecycleOwner = lifecycleOwner
             vm = viewModel
         }
-    }
-
-    private fun initViewModel() {
-        viewModel = MainActivityViewModel(getKoin().get())
     }
 }

@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.kotlin.android)
     id("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -58,9 +59,15 @@ dependencies {
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.converter.gson)
 
-    // Koin
-    implementation(libs.koin.android)
-    implementation(libs.koin.core)
+    // hilt
+    implementation("com.google.dagger:hilt-android:2.56.2")
+    kapt("com.google.dagger:hilt-android-compiler:2.56.2")
+    kapt("com.google.dagger:dagger-compiler:2.56.2")
+
+    // coroutines
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.10.2")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.9.3")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
