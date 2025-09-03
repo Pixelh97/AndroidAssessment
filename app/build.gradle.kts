@@ -56,6 +56,7 @@ dependencies {
     // Retrofit
     implementation(libs.retrofit)
     implementation(libs.kotlinx.serialization.json)
+    implementation(libs.converter.gson)
 
     // Koin
     implementation(libs.koin.android)
