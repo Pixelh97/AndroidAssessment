@@ -15,8 +15,8 @@ fun Profile.toProfileUiState() =
         location = this.location,
         website = this.website,
         socialMedia = this.profiles,
-        followersCount = this.followersCount,
-        followingCount = this.followingCount,
+        followersCount = this.followersCount.toString(),
+        followingCount = this.followingCount.toString(),
         shots = "${this.shotsCount} shots",
         collections = "${this.collectionCount} collections",
     )

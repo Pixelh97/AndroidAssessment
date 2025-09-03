@@ -6,9 +6,11 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
 import com.example.androidassessment.R
 import com.example.androidassessment.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -25,13 +27,17 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        initViews()
+        lifecycleScope.launch {
+            viewModel.profileScreenUiState.collect {
+                initViews(it)
+            }
+        }
     }
 
-    private fun initViews() {
+    private fun initViews(uiState: ProfileScreenUiState) {
         with(binding) {
             lifecycleOwner = lifecycleOwner
-            vm = viewModel
+            state = uiState
         }
     }
 }

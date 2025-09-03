@@ -1,5 +1,7 @@
 package com.example.androidassessment.ui
 
+import android.provider.SyncStateContract.Helpers.update
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.androidassessment.domian.repository.ProfileRepository
@@ -27,12 +29,11 @@ class MainActivityViewModel
         private fun loadData() {
             viewModelScope.launch {
                 val profileState = profileRepository.getProfile().toProfileUiState()
-                _profileScreenUiState.update {
-                    it.copy(
-                        profile = profileState,
-                        isLoading = false,
-                    )
-                }
+                Log.d("TAG", "loadData: $profileState")
+                _profileScreenUiState.value = ProfileScreenUiState(
+                    profile = profileState,
+                    isLoading = false,
+                )
             }
         }
     }

@@ -8,8 +8,8 @@
         <import type="android.view.View" />
 
         <variable
-            name="vm"
-            type="com.example.androidassessment.ui.MainActivityViewModel" />
+            name="state"
+            type="com.example.androidassessment.ui.ProfileScreenUiState" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -19,25 +19,10 @@
         android:background="@color/white"
         tools:context=".ui.MainActivity">
 
-
-        <com.google.android.material.progressindicator.CircularProgressIndicator
-            android:id="@+id/loading_indicator"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:indeterminateTint="@color/primary_background"
-            android:progressBackgroundTint="@color/gradient_start_color"
-            android:visibility="@{vm.profileScreenUiState.isLoading == true ? View.VISIBLE : View.GONE}"
-            app:indicatorColor="@color/gradient_start_color"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:visibility="@{vm.profileScreenUiState.isLoading == false ? View.VISIBLE : View.GONE}"
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -76,7 +61,7 @@
                         android:layout_marginHorizontal="24dp"
                         android:layout_weight="1"
                         android:fontFamily="@font/circular_std_book"
-                        android:text="@{vm.profileScreenUiState.profile.username}"
+                        android:text="@{state.profile.username}"
                         android:textAlignment="center"
                         android:textColor="@color/white"
                         android:textSize="14sp"
@@ -98,7 +83,6 @@
                     android:adjustViewBounds="true"
                     android:padding="5dp"
                     android:scaleType="fitCenter"
-                    app:url="@{vm.profileScreenUiState.profile.imageUrl}"
                     app:layout_constraintBottom_toBottomOf="@+id/img_profile_background"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
@@ -107,7 +91,7 @@
                     app:shapeAppearanceOverlay="@style/CircularShape"
                     app:strokeColor="@color/white"
                     app:strokeWidth="4dp"
-                    tools:src="@drawable/pic" />
+                    app:url="@{state.profile.imageUrl}" />
 
                 <LinearLayout
                     android:id="@+id/profile_info_section"
@@ -135,7 +119,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="6dp"
                         android:fontFamily="@font/circular_std_book"
-                        android:text="@{vm.profileScreenUiState.profile.location}"
+                        android:text="@{state.profile.location}"
                         android:textAlignment="center"
                         android:textColor="@color/black_purple"
                         android:textSize="16sp"
@@ -162,7 +146,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/circular_std_bold"
-                                android:text="@{vm.profileScreenUiState.profile.followersCount}"
+                                android:text="@{state.profile.followersCount}"
                                 android:textAlignment="center"
                                 android:textColor="@color/textColor"
                                 android:textSize="16sp"
@@ -171,11 +155,12 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_marginStart="4dp"
                                 android:fontFamily="@font/circular_std_book"
+                                android:text="@string/followers"
                                 android:textAlignment="center"
                                 android:textColor="@color/text_placeholder"
-                                android:textSize="16sp"
-                                tools:text=" Followers" />
+                                android:textSize="16sp" />
 
                             <View
                                 android:layout_width="48dp"
@@ -186,7 +171,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/circular_std_bold"
-                                android:text="@{vm.profileScreenUiState.profile.followingCount}"
+                                android:text="@{state.profile.followingCount}"
                                 android:textAlignment="center"
                                 android:textColor="@color/textColor"
                                 android:textSize="16sp"
@@ -195,11 +180,12 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_marginStart="4dp"
                                 android:fontFamily="@font/circular_std_book"
+                                android:text="@string/following"
                                 android:textAlignment="center"
                                 android:textColor="@color/text_placeholder"
-                                android:textSize="16sp"
-                                tools:text=" Following" />
+                                android:textSize="16sp" />
                         </LinearLayout>
                     </com.google.android.material.card.MaterialCardView>
 
@@ -249,8 +235,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="23dp"
                     android:backgroundTint="@color/white"
-                    android:paddingVertical="6dp"
                     android:paddingHorizontal="10dp"
+                    android:paddingVertical="6dp"
                     app:layout_constraintTop_toBottomOf="@id/profile_info_section"
                     app:tabIndicator="@drawable/tab_indicator"
                     app:tabIndicatorAnimationMode="elastic"
@@ -269,7 +255,7 @@
                     <com.google.android.material.tabs.TabItem
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="0 collections"/>
+                        android:text="0 collections" />
                 </com.google.android.material.tabs.TabLayout>
 
                 <androidx.recyclerview.widget.RecyclerView

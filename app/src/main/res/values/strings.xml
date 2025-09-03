@@ -3,4 +3,6 @@
     <string name="profile_header_background">Profile header background</string>
     <string name="setting_button">Setting button</string>
     <string name="navigation_back_button">Navigation back button</string>
+    <string name="followers"> Followers</string>
+    <string name="following"> Following</string>
 </resources>
