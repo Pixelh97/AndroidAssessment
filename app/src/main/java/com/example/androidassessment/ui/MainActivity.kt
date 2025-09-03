@@ -7,6 +7,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.androidassessment.R
 import com.example.androidassessment.databinding.ActivityMainBinding
+import org.koin.android.ext.android.getKoin
 
 class MainActivity : AppCompatActivity() {
     private lateinit var viewModel: MainActivityViewModel
@@ -34,6 +35,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initViewModel() {
-        viewModel = MainActivityViewModel()
+        viewModel = MainActivityViewModel(getKoin().get())
     }
 }
